@@ -1,12 +1,9 @@
 #include "ht.h"
 
-t_ht	*ht_create(size_t capacity, t_ht_hash_fn hash_fn, t_ht_cmp_fn cmp_fn)
+static t_ht	*ht_create_init(size_t capacity)
 {
-	t_ht		*table;
-	size_t		i;
+	t_ht	*table;
 
-	if (capacity == 0 || !hash_fn || !cmp_fn)
-		return (NULL);
 	table = malloc(sizeof(t_ht));
 	if (!table)
 		return (NULL);
@@ -16,6 +13,19 @@ t_ht	*ht_create(size_t capacity, t_ht_hash_fn hash_fn, t_ht_cmp_fn cmp_fn)
 		free(table);
 		return (NULL);
 	}
+	return (table);
+}
+
+t_ht	*ht_create(size_t capacity, t_ht_hash_fn hash_fn, t_ht_cmp_fn cmp_fn)
+{
+	t_ht		*table;
+	size_t		i;
+
+	if (capacity == 0 || !hash_fn || !cmp_fn)
+		return (NULL);
+	table = ht_create_init(capacity);
+	if (!table)
+		return (NULL);
 	i = 0;
 	while (i < capacity)
 	{

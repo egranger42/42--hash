@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 
+// DJB2 hash algorithm
 uint64_t	ht_hash_default(const void *key)
 {
 	const unsigned char	*str;
@@ -16,7 +17,7 @@ uint64_t	ht_hash_default(const void *key)
 
 int	ht_cmp_default(const void *key1, const void *key2)
 {
-	return (strcmp((const char *)key1, (const char *)key2));
+	return (ft_strcmp((const char *)key1, (const char *)key2));
 }
 
 const char	*ht_status_msg(t_ht_status status)

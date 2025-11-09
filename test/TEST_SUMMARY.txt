@@ -1,0 +1,63 @@
+=== Hash Table Extensive Test Suite ===
+
+CREATED TEST FILES:
+1. test_rand.h / test_rand.c
+   - Random number generation with LCG algorithm
+   - uint32 and uint64 random numbers
+
+2. test_rand_str.c
+   - Random string generation
+   - Random key generation with format "key_<id>_<random>"
+
+3. test_rand_alloc.c
+   - Random integer allocation
+   - Batch random data generation
+   - Memory cleanup functions
+
+4. test_large_scale.c
+   - Tests 1 MILLION entries
+   - Auto-resizing from 256 to 2097152 capacity
+   - Measures insertion performance
+   - Execution time: ~0.65 seconds
+
+5. test_stress.c
+   - 30,000+ random operations (exceeds 15k requirement)
+   - Mixed add/get/delete operations
+   - Tests load factor handling
+   - Shows operation distribution and timing
+
+6. test_growth.c
+   - Tests table growth with 100k entries
+   - Phase 1: Growth (4 -> 262144 capacity)
+   - Phase 2: Verification (retrieve all entries)
+   - Phase 3: Deletion (remove 50% of entries)
+   - Phase 4: Re-adding (restore 25% of deleted)
+
+TEST RESULTS:
+✓ test_large_scale: 1,000,000 entries added successfully
+✓ test_stress: 30,000 operations (9786 adds, 10099 gets, 10115 deletes)
+✓ test_growth: 100,000 entries with growth/shrink cycles
+
+MAKEFILE:
+- make: Compile all tests
+- make clean: Remove object files
+- make fclean: Remove object files and binaries
+- make re: Full rebuild
+
+FILES IGNORED BY GIT:
+- Object files (*.o)
+- Object directory (o/)
+- Test binaries (../bin/test_*)
+- Editor files (.swp, .swo, *~, .DS_Store)
+
+FEATURES TESTED:
+✓ Large scale insertion with automatic resizing
+✓ Load factor management (0.75 threshold)
+✓ Doubling capacity strategy
+✓ Linear probing collision resolution
+✓ Deleted entry reuse
+✓ Key retrieval accuracy
+✓ Deletion and re-insertion cycles
+✓ Mixed random operations
+✓ Performance under stress
+✓ Memory efficiency

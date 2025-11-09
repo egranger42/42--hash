@@ -1,7 +1,0 @@
-*.o
-o/
-../bin/test_*
-.DS_Store
-*.swp
-*.swo
-*~
